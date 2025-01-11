@@ -29,7 +29,7 @@ jobs:
 
       - name: Install dev-dependencies
         run: |
-            pip install .[dev]
+            pip install .[dev] --no-deps
 
       - name: Generate coverage report
         shell: bash -el {0}
@@ -39,7 +39,7 @@ jobs:
           conda config --show-sources
           conda config --show
           pip install .
-          pytest -sv -m "not plot"
+          pytest -sv -m "not plot"  --ignore-glob="*plot*.py"
 
   Optional-packages:
     runs-on: ${{ matrix.os }}
@@ -67,7 +67,7 @@ jobs:
 
       - name: Install dev-dependencies
         run: |
-            pip install .[dev]
+            pip install .[dev] --no-deps
 
       - name: Generate coverage report
         shell: bash -el {0}
